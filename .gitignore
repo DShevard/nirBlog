@@ -1,0 +1,57 @@
+.env
+__pycache__/
+*.py[cod]
+.venv/
+.vscode/
+.idea/
+.DS_Store
+# Ignore generated drafts, keep directory in git:
+blog/content/drafts/*.md
+!blog/content/drafts/.gitkeep
+
+# Generated articles
+bot/generated/
+blog/content/articles/*.md
+
+# Temporary uploads
+*.uploading
+
+# Additional local secrets
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+.ssh/
+
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Runtime content and backups
+/blog/content/articles/*
+/blog/content/drafts/*
+!/blog/content/drafts/.gitkeep
+/bot/generated/
+/backups/
+*.bak
+*.log
+*.dump
+*.sql.gz
+*.zip
+
+# Editor and operating system files
+.idea/
+.vscode/
+.DS_Store

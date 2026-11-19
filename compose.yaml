@@ -1,0 +1,70 @@
+services:
+  db:
+    image: postgres:17-alpine
+
+    env_file:
+      - .env
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro,Z
+
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"
+      interval: 5s
+      timeout: 3s
+      retries: 15
+
+    restart: unless-stopped
+
+  blog:
+    build: ./blog
+    image: nir-blog-app
+
+    env_file:
+      - .env
+
+    environment:
+      DB_HOST: db
+      DB_PORT: "5432"
+      ARTICLES_DIR: /app/content/articles
+
+    ports:
+      - "127.0.0.1:8000:8000"
+
+    volumes:
+      - ./blog/content/articles:/app/content/articles:ro,z
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+    restart: unless-stopped
+
+  publisher:
+    image: nir-blog-app
+
+    profiles:
+      - tools
+
+    env_file:
+      - .env
+
+    environment:
+      DB_HOST: db
+
+    volumes:
+      - ./blog/content:/app/content:rw,z
+
+    entrypoint:
+      - python
+      - /app/scripts/publish.py
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

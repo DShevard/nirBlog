@@ -1,0 +1,9 @@
+[Unit]
+Description=NIR Blog - Import uploaded Markdown drafts
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+EnvironmentFile=/etc/nir-blog/importer.conf
+ExecStart=/usr/bin/python3 /usr/local/sbin/nir-import-drafts.py

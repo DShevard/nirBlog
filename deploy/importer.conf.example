@@ -1,0 +1,3 @@
+NIR_INCOMING_DIR=/srv/nir-sftp/incoming
+NIR_DRAFTS_DIR=/home/your_username/nir-blog-starter/blog/content/drafts
+NIR_EDITOR_USER=your_username
