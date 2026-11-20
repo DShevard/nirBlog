@@ -1,5 +1,16 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{% block title %}Лабораторный журнал НИР{% endblock %}</title><link rel="stylesheet" href="/static/site.css?v=5"></head><body>
-<header class="topbar"><div class="container topbar-inner"><button class="menu-button" id="open-menu" aria-haspopup="dialog" aria-controls="directions-menu">☰ <span>Направления</span></button><a href="/" class="brand"><span class="brand-mark">N<span>R</span></span><span class="brand-copy"><strong>Лабораторный журнал</strong><small>Поведение и координация роботов</small></span></a><a class="header-link" href="/publications">Все публикации ↗</a></div></header>
+<!doctype html><html lang="ru" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{% block title %}Лабораторный журнал НИР{% endblock %}</title><script>
+    try {
+        if (localStorage.getItem("nir-theme") === "light") {
+            document.documentElement.dataset.theme = "light";
+        }
+    } catch (error) {
+        // Если хранилище недоступно, оставляем тёмную тему.
+    }
+</script><link rel="stylesheet" href="/static/site.css?v=6"></head><body>
+<header class="topbar"><div class="container topbar-inner"><button class="menu-button" id="open-menu" aria-haspopup="dialog" aria-controls="directions-menu">☰ <span>Направления</span></button><a href="/" class="brand"><span class="brand-mark">N<span>R</span></span><span class="brand-copy"><strong>Лабораторный журнал</strong><small>Поведение и координация роботов</small></span></a><button type="button" id="theme-toggle" class="theme-toggle"
+        aria-label="Переключить тему">☀</button>
+
+<a class="header-link" href="/publications">Все публикации ↗</a></div></header>
 <dialog id="directions-menu" class="drawer" aria-labelledby="menu-title"><div class="drawer-head"><h2 id="menu-title">Навигация</h2><button id="close-menu" class="menu-button" aria-label="Закрыть меню">✕</button></div><nav class="drawer-links"><a href="/" {% if page == 'home' %}aria-current="page"{% endif %}>О проекте</a><a href="/publications" {% if page == 'publications' and not selected_section_id %}aria-current="page"{% endif %}>Все публикации</a><p class="section-eyebrow">НАПРАВЛЕНИЯ ИССЛЕДОВАНИЯ</p>{% for item in sections %}<a href="/directions/{{ item.id }}" {% if selected_section_id == item.id %}aria-current="page"{% endif %}><span class="nav-number">0{{ item.id }}</span>{{ item.name }}</a>{% endfor %}</nav><p class="drawer-note">Четыре тематических блока.<br>Одно общее исследование.</p></dialog>
 <main>{% block content %}{% endblock %}</main><footer class="site-footer"><div class="container footer-inner"><span>© 2026 · Лабораторный журнал НИР</span><span>Робототехника · Управление · Координация</span></div></footer>
 <script>
@@ -7,4 +18,27 @@ const menu=document.getElementById('directions-menu');
 document.getElementById('open-menu').addEventListener('click',()=>menu.showModal());
 document.getElementById('close-menu').addEventListener('click',()=>menu.close());
 menu.addEventListener('click',event=>{const r=menu.getBoundingClientRect();if(event.target===menu&&(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom))menu.close();});
+const themeToggle = document.getElementById("theme-toggle");
+
+function updateThemeButton() {
+    const isDark = document.documentElement.dataset.theme === "dark";
+
+    themeToggle.textContent = isDark ? "☀" : "☾";
+    themeToggle.setAttribute(
+        "aria-label",
+        isDark ? "Включить светлую тему" : "Включить тёмную тему"
+    );
+}
+
+themeToggle.addEventListener("click", () => {
+    const currentTheme = document.documentElement.dataset.theme;
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+    document.documentElement.dataset.theme = newTheme;
+    localStorage.setItem("nir-theme", newTheme);
+
+    updateThemeButton();
+});
+
+updateThemeButton();
 </script></body></html>

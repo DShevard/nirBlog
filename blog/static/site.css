@@ -1099,3 +1099,459 @@ body{background:#0b1417;color:var(--ink);font-family:Inter,"Segoe UI",Arial,sans
 .topbar-inner .header-link {
     margin-left: auto;
 }
+
+/* Ссылки на научные источники */
+
+.markdown-content a[title^="Источник №"] {
+    display: inline-block;
+    padding: 2px 7px;
+    margin: 0 3px;
+
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+
+    font-size: 0.72em;
+    font-weight: 700;
+    line-height: 1.3;
+    text-decoration: none;
+    vertical-align: super;
+
+    transition: background 0.2s ease;
+}
+
+.markdown-content a[title^="Источник №"]:hover {
+    background: color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+/* ========================================
+   Переключатель темы
+======================================== */
+
+.theme-toggle {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+
+    width: 44px;
+    height: 44px;
+    margin-left: auto;
+
+    background: rgba(145, 239, 208, 0.09);
+    border: 1px solid rgba(145, 239, 208, 0.28);
+    border-radius: 11px;
+
+    color: var(--accent);
+    font-size: 24px;
+    cursor: pointer;
+
+    transition: background 0.2s;
+}
+
+.theme-toggle:hover {
+    background: rgba(145, 239, 208, 0.18);
+}
+
+.theme-toggle:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.topbar-inner .header-link {
+    margin-left: 0;
+}
+
+
+/* ========================================
+   Светлая тема
+======================================== */
+
+:root[data-theme="light"] {
+    color-scheme: light;
+
+    --accent: #247c60;
+    --ink: #173b30;
+    --text: #213c34;
+    --muted: #62796e;
+
+    --background: #f5f8f6;
+    --white: #ffffff;
+    --border: #dce6df;
+
+    --blue: #247c60;
+    --blue-light: #e8f3ec;
+    --navy: #173b30;
+    --navy-dark: #102f27;
+}
+
+/* Основной фон и шапка */
+
+[data-theme="light"] body {
+    background: var(--background);
+    color: var(--ink);
+}
+
+[data-theme="light"] .topbar {
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid var(--border);
+}
+
+[data-theme="light"] .brand,
+[data-theme="light"] .brand-copy strong {
+    color: var(--ink);
+}
+
+[data-theme="light"] .brand-copy small,
+[data-theme="light"] .header-link {
+    color: var(--muted);
+}
+
+[data-theme="light"] .brand-mark {
+    background: var(--accent);
+    color: #ffffff;
+}
+
+[data-theme="light"] .brand-mark span {
+    color: #c6f2df;
+}
+
+[data-theme="light"] .menu-button,
+[data-theme="light"] .theme-toggle {
+    background: #edf5ef;
+    border: 1px solid var(--border);
+    color: var(--ink);
+}
+
+[data-theme="light"] .menu-button:hover,
+[data-theme="light"] .theme-toggle:hover {
+    background: #dceee3;
+}
+
+/* Главный экран */
+
+[data-theme="light"] .hero {
+    background:
+        radial-gradient(
+            ellipse at 78% 45%,
+            #cde9d9,
+            transparent 50%
+        ),
+        #edf5ef;
+
+    color: var(--ink);
+    border-bottom: 1px solid var(--border);
+}
+
+[data-theme="light"] .hero::before {
+    background-image:
+        linear-gradient(#247c6008 1px, transparent 1px),
+        linear-gradient(90deg, #247c6008 1px, transparent 1px);
+}
+
+[data-theme="light"] .hero h1 {
+    color: var(--ink);
+}
+
+[data-theme="light"] .hero h1 span {
+    color: var(--accent);
+}
+
+[data-theme="light"] .hero-description,
+[data-theme="light"] .hero-label {
+    color: #526e60;
+}
+
+[data-theme="light"] .hero-label {
+    border-color: #247c6040;
+}
+
+[data-theme="light"] .hero-button {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #ffffff;
+}
+
+[data-theme="light"] .hero-button:hover {
+    background: #195a45;
+    color: #ffffff;
+}
+
+[data-theme="light"] .status-dot {
+    background: var(--accent);
+}
+
+/* Схема роботов оставлена тёмной для контраста */
+
+[data-theme="light"] .research-visual {
+    background: #17372e;
+    border-color: #376753;
+}
+
+[data-theme="light"] .visual-caption,
+[data-theme="light"] .visual-footer {
+    color: #b4d5c5;
+}
+
+/* Разделы главной страницы */
+
+[data-theme="light"] .section h2,
+[data-theme="light"] .section-heading h2,
+[data-theme="light"] .about-inner h2 {
+    color: var(--ink);
+}
+
+[data-theme="light"] .section-eyebrow {
+    color: var(--accent);
+}
+
+[data-theme="light"] .section-description,
+[data-theme="light"] .intro-text {
+    color: var(--muted);
+}
+
+[data-theme="light"] .about-section {
+    background: #eaf1ec;
+    border-color: var(--border);
+}
+
+[data-theme="light"] .about-columns > div {
+    background: #ffffff;
+    border: 1px solid var(--border);
+}
+
+[data-theme="light"] .about-columns h3 {
+    color: var(--ink);
+}
+
+[data-theme="light"] .about-columns p {
+    color: var(--muted);
+}
+
+[data-theme="light"] .research-map,
+[data-theme="light"] .team-section {
+    border-color: var(--border);
+}
+
+[data-theme="light"] .map-heading > p {
+    color: var(--muted);
+}
+
+/* Карточки направлений */
+
+[data-theme="light"] .research-tile {
+    background: #ffffff;
+    border: 1px solid var(--border);
+}
+
+[data-theme="light"] .research-tile:hover {
+    border-color: var(--accent);
+}
+
+[data-theme="light"] .research-tile h3,
+[data-theme="light"] .synthesis h3 {
+    color: var(--ink);
+}
+
+[data-theme="light"] .research-tile p,
+[data-theme="light"] .synthesis p {
+    color: var(--muted);
+}
+
+[data-theme="light"] .tile-index,
+[data-theme="light"] .tile-link,
+[data-theme="light"] .synthesis-arrow {
+    color: var(--accent);
+}
+
+[data-theme="light"] .tile-link {
+    border-top-color: var(--border);
+}
+
+[data-theme="light"] .synthesis {
+    background: #e7f2e9;
+    border-color: #c7dfd0;
+}
+
+/* Боковое меню */
+
+[data-theme="light"] .drawer {
+    background: #ffffff;
+    color: var(--ink);
+    border-right: 1px solid var(--border);
+}
+
+[data-theme="light"] .drawer-head h2 {
+    color: var(--ink);
+}
+
+[data-theme="light"] .drawer-links a {
+    color: #3c5b4d;
+}
+
+[data-theme="light"] .drawer-links a:hover {
+    background: #edf5ef;
+    color: var(--accent);
+}
+
+[data-theme="light"] .drawer-links a[aria-current] {
+    background: #e3f2e9;
+    color: var(--accent);
+    border-color: #bcdcca;
+}
+
+[data-theme="light"] .nav-number,
+[data-theme="light"] .drawer-note {
+    color: var(--muted);
+}
+
+[data-theme="light"] .drawer-note {
+    border-top-color: var(--border);
+}
+
+/* Страница публикаций */
+
+[data-theme="light"] .publication-page h1 {
+    color: var(--ink);
+}
+
+[data-theme="light"] .back-link {
+    color: var(--accent);
+}
+
+[data-theme="light"] .author-filter {
+    background: #ffffff;
+    color: var(--muted);
+    border: 1px solid var(--border);
+}
+
+[data-theme="light"] .author-filter label {
+    color: var(--ink);
+}
+
+[data-theme="light"] .author-filter select {
+    background: #f5f8f6;
+    color: var(--ink);
+    border: 1px solid var(--border);
+}
+
+[data-theme="light"] .author-filter button {
+    background: var(--accent);
+    color: #ffffff;
+}
+
+[data-theme="light"] .reset-filter {
+    color: var(--accent);
+}
+
+/* Карточки статей */
+
+[data-theme="light"] .article-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 18px #173b3008;
+}
+
+[data-theme="light"] .article-card:hover {
+    border-color: #9bcbb3;
+    box-shadow: 0 12px 30px #173b3014;
+}
+
+[data-theme="light"] .article-card h3 a,
+[data-theme="light"] .author-name {
+    color: var(--ink);
+}
+
+[data-theme="light"] .category {
+    background: #e5f3ea;
+    color: var(--accent);
+    border-color: #cce6d6;
+}
+
+[data-theme="light"] .article-number,
+[data-theme="light"] .card-description,
+[data-theme="light"] .card-author time {
+    color: var(--muted);
+}
+
+[data-theme="light"] .card-footer {
+    border-top-color: var(--border);
+}
+
+[data-theme="light"] .card-arrow {
+    background: #e5f3ea;
+    color: var(--accent);
+    border-color: #cce6d6;
+}
+
+[data-theme="light"] .empty-state {
+    background: #ffffff;
+    border-color: var(--border);
+}
+
+[data-theme="light"] .empty-state h3 {
+    color: var(--ink);
+}
+
+[data-theme="light"] .empty-state p {
+    color: var(--muted);
+}
+
+/* Страница чтения статьи */
+
+[data-theme="light"] .reading-page {
+    background: var(--background);
+}
+
+[data-theme="light"] .article-header {
+    border-bottom-color: var(--border);
+}
+
+[data-theme="light"] .article-header h1,
+[data-theme="light"] .markdown-content h2,
+[data-theme="light"] .markdown-content h3,
+[data-theme="light"] .markdown-content h4,
+[data-theme="light"] .markdown-content strong {
+    color: var(--ink);
+}
+
+[data-theme="light"] .article-byline,
+[data-theme="light"] .article-byline strong,
+[data-theme="light"] .markdown-content {
+    color: #39594b;
+}
+
+[data-theme="light"] .markdown-content a {
+    color: var(--accent);
+}
+
+[data-theme="light"] .markdown-content pre {
+    background: #18372f;
+    color: #e1f5e9;
+    border-color: #315a49;
+}
+
+[data-theme="light"] .markdown-content code {
+    background: #e1eee6;
+    color: #245e48;
+}
+
+[data-theme="light"] .markdown-content blockquote {
+    background: #e8f2eb;
+    color: #39594b;
+    border-left-color: var(--accent);
+}
+
+[data-theme="light"] .markdown-content th,
+[data-theme="light"] .markdown-content td {
+    border-color: var(--border);
+}
+
+/* Подвал сайта */
+
+[data-theme="light"] .site-footer {
+    background: #e8f0eb;
+    color: #557366;
+    border-top: 1px solid var(--border);
+}
