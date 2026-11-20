@@ -1555,3 +1555,45 @@ body{background:#0b1417;color:var(--ink);font-family:Inter,"Segoe UI",Arial,sans
     color: #557366;
     border-top: 1px solid var(--border);
 }
+/* ========================================
+   Логотип лабораторного журнала
+======================================== */
+
+.brand-mark {
+    --logo-bg: #102024;
+
+    display: grid;
+    place-items: center;
+
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+
+    background: var(--logo-bg);
+    color: #91efd0;
+
+    border: 1px solid #91efd04d;
+    border-radius: 12px;
+    letter-spacing: normal;
+}
+
+.brand-mark svg {
+    width: 36px;
+    height: 36px;
+    display: block;
+}
+
+.brand-mark svg circle {
+    fill: var(--logo-bg);
+}
+
+/* Логотип в светлой теме */
+
+[data-theme="light"] .brand-mark {
+    --logo-bg: #f5f8f6;
+
+    background: var(--logo-bg);
+    color: #247c60;
+
+    border: 1px solid #dce6df;
+}
