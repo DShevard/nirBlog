@@ -69,14 +69,21 @@ def make_filename(title: str) -> str:
     return f"{slug}-{unique_id}.md"
 
 
+
 async def start(
     update: Update,
     context: ContextTypes.DEFAULT_TYPE,
 ):
     await update.message.reply_text(
-        "Привет! Я бот для генерации статей НИР.\n\n"
-        "Отправь /article и материалы для статьи."
+        "Привет! Я бот для подготовки научных статей НИР.\n\n"
+        "Для генерации отправь команду /article и укажи:\n"
+        "1. Тему статьи.\n"
+        "2. Ссылки на первоисточники.\n"
+        "3. Особые пожелания (необязательно).\n\n"
+        "Общие требования к структуре, стилю и ссылкам "
+        "применяются автоматически."
     )
+
 
 
 async def article(

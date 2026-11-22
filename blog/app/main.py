@@ -260,6 +260,50 @@ def publications(request: Request, section_id: int | None = None, author_id: str
         "articles": articles, "page": "publications",
     })
 
+def decorate_citations(text: str) -> str:
+    """Превращает номера источников в кликабельные ссылки."""
+    parts = re.split(
+        r"(?=^##\s+(?:Источники|Список литературы)\s*$)",
+        text,
+        maxsplit=1,
+        flags=re.MULTILINE | re.IGNORECASE,
+    )
+
+    if len(parts) != 2:
+        return text
+
+    body, bibliography = parts
+
+    source_pattern = (
+        r"^(\d+)\.\s+\[[^\]]+\]"
+        r"\((?:<([^>]+)>|([^)]+))\)"
+    )
+
+    sources = {
+        int(match.group(1)): match.group(2) or match.group(3)
+        for match in re.finditer(
+            source_pattern, bibliography, re.MULTILINE
+        )
+    }
+
+    def replace_citation(match):
+        number = int(match.group(1))
+        url = sources.get(number)
+
+        if not url:
+            return match.group(0)
+
+        return f'[{number}](<{url}> "Источник №{number}")'
+
+    body = re.sub(
+        r"(?<![\w\[])\[(\d+)\](?!\()",
+        replace_citation,
+        body,
+    )
+
+    return body + bibliography
+
+
 @app.get("/articles/{article_id}", response_class=HTMLResponse)
 def article_page(request: Request, article_id: int):
     article = get_article(article_id)
@@ -275,7 +319,7 @@ def article_page(request: Request, article_id: int):
     ).lstrip()
 
     # HTML внутри Markdown отключён настройкой markdown-it.
-    article["html"] = markdown.render(body_markdown)
+    article["html"] = markdown.render(decorate_citations(body_markdown))
 
     return templates.TemplateResponse(
         request,
